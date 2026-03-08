@@ -58,24 +58,12 @@
           ]
         }
       ]
-    },
-    "trayIcon": {
-      "id": "main-tray",
-      "iconPath": "icons/32x32.png",
-      "iconAsTemplate": true,
-      "tooltip": "悬浮修仙 - 挂机修炼中",
-      "menuOnLeftClick": false
     }
   },
   "bundle": {
     "active": true,
     "targets": ["msi"],
-    "icon": [
-      "icons/32x32.png",
-      "icons/128x128.png",
-      "icons/128x128@2x.png",
-      "icons/icon.icns"
-    ],
+    "icon": [],
     "windows": {
       "certificateThumbprint": null,
       "digestAlgorithm": "sha256",
