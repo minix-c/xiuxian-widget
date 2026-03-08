@@ -1,0 +1,646 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 全局样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'JetBrains Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 防止文本选择 */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* 玻璃态效果 */
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ========== 境界光晕动画 ========== */
+
+/* 基础光晕脉冲 */
+@keyframes realm-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--realm-color, #00D4AA)40;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--realm-color, #00D4AA)60;
+    transform: scale(1.02);
+  }
+}
+
+.animate-realm-glow {
+  animation: realm-glow-pulse 3s ease-in-out infinite;
+}
+
+/* 境界呼吸光效 */
+@keyframes realm-breathe {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-realm-breathe {
+  animation: realm-breathe 4s ease-in-out infinite;
+}
+
+/* 境界旋转光晕 */
+@keyframes realm-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-realm-rotate {
+  animation: realm-rotate 20s linear infinite;
+}
+
+/* 练气期 - 青绿色光晕 */
+.lianqi-glow {
+  --realm-color: #00D4AA;
+}
+
+@keyframes lianqi-flow {
+  0% {
+    box-shadow: 
+      0 0 20px rgba(0, 212, 170, 0.3),
+      inset 0 0 20px rgba(0, 212, 170, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 40px rgba(0, 212, 170, 0.5),
+      inset 0 0 30px rgba(0, 212, 170, 0.2);
+  }
+  100% {
+    box-shadow: 
+      0 0 20px rgba(0, 212, 170, 0.3),
+      inset 0 0 20px rgba(0, 212, 170, 0.1);
+  }
+}
+
+.animate-lianqi-glow {
+  animation: lianqi-flow 3s ease-in-out infinite;
+}
+
+/* 筑基期 - 蓝色光晕 */
+@keyframes zhuji-flow {
+  0% {
+    box-shadow: 
+      0 0 25px rgba(74, 144, 226, 0.35),
+      inset 0 0 20px rgba(74, 144, 226, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 50px rgba(74, 144, 226, 0.55),
+      inset 0 0 35px rgba(74, 144, 226, 0.2);
+  }
+  100% {
+    box-shadow: 
+      0 0 25px rgba(74, 144, 226, 0.35),
+      inset 0 0 20px rgba(74, 144, 226, 0.1);
+  }
+}
+
+.animate-zhuji-glow {
+  animation: zhuji-flow 3.5s ease-in-out infinite;
+}
+
+/* 金丹期 - 金色光晕 */
+@keyframes jindan-flow {
+  0% {
+    box-shadow: 
+      0 0 30px rgba(253, 203, 110, 0.4),
+      inset 0 0 25px rgba(253, 203, 110, 0.15);
+  }
+  50% {
+    box-shadow: 
+      0 0 60px rgba(253, 203, 110, 0.6),
+      inset 0 0 40px rgba(253, 203, 110, 0.25);
+  }
+  100% {
+    box-shadow: 
+      0 0 30px rgba(253, 203, 110, 0.4),
+      inset 0 0 25px rgba(253, 203, 110, 0.15);
+  }
+}
+
+.animate-jindan-glow {
+  animation: jindan-flow 4s ease-in-out infinite;
+}
+
+/* 元婴期 - 紫色光晕 */
+@keyframes yuanying-flow {
+  0% {
+    box-shadow: 
+      0 0 35px rgba(155, 89, 182, 0.45),
+      inset 0 0 30px rgba(155, 89, 182, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 0 70px rgba(155, 89, 182, 0.65),
+      inset 0 0 50px rgba(155, 89, 182, 0.3);
+  }
+  100% {
+    box-shadow: 
+      0 0 35px rgba(155, 89, 182, 0.45),
+      inset 0 0 30px rgba(155, 89, 182, 0.2);
+  }
+}
+
+.animate-yuanying-glow {
+  animation: yuanying-flow 4.5s ease-in-out infinite;
+}
+
+/* 化神期 - 橙红色光晕 */
+@keyframes huashen-flow {
+  0% {
+    box-shadow: 
+      0 0 40px rgba(231, 76, 60, 0.5),
+      inset 0 0 35px rgba(231, 76, 60, 0.25);
+  }
+  50% {
+    box-shadow: 
+      0 0 80px rgba(231, 76, 60, 0.7),
+      inset 0 0 60px rgba(231, 76, 60, 0.35);
+  }
+  100% {
+    box-shadow: 
+      0 0 40px rgba(231, 76, 60, 0.5),
+      inset 0 0 35px rgba(231, 76, 60, 0.25);
+  }
+}
+
+.animate-huashen-glow {
+  animation: huashen-flow 5s ease-in-out infinite;
+}
+
+/* 渡劫期 - 银白色光晕 */
+@keyframes dujie-flow {
+  0% {
+    box-shadow: 
+      0 0 45px rgba(232, 232, 232, 0.55),
+      inset 0 0 40px rgba(232, 232, 232, 0.3);
+  }
+  25% {
+    box-shadow: 
+      0 0 90px rgba(255, 255, 255, 0.8),
+      inset 0 0 70px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    box-shadow: 
+      0 0 50px rgba(200, 200, 200, 0.6),
+      inset 0 0 45px rgba(200, 200, 200, 0.35);
+  }
+  75% {
+    box-shadow: 
+      0 0 100px rgba(255, 255, 255, 0.9),
+      inset 0 0 80px rgba(255, 255, 255, 0.45);
+  }
+  100% {
+    box-shadow: 
+      0 0 45px rgba(232, 232, 232, 0.55),
+      inset 0 0 40px rgba(232, 232, 232, 0.3);
+  }
+}
+
+.animate-dujie-glow {
+  animation: dujie-flow 2s ease-in-out infinite;
+}
+
+/* 大乘期 - 彩虹光晕 */
+@keyframes dacheng-flow {
+  0% {
+    box-shadow: 
+      0 0 50px rgba(255, 215, 0, 0.6),
+      inset 0 0 45px rgba(255, 215, 0, 0.35);
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    box-shadow: 
+      0 0 100px rgba(255, 215, 0, 0.8),
+      inset 0 0 80px rgba(255, 215, 0, 0.5);
+  }
+  100% {
+    box-shadow: 
+      0 0 50px rgba(255, 215, 0, 0.6),
+      inset 0 0 45px rgba(255, 215, 0, 0.35);
+    filter: hue-rotate(360deg);
+  }
+}
+
+.animate-dacheng-glow {
+  animation: dacheng-flow 6s ease-in-out infinite;
+}
+
+/* ========== 突破动画 ========== */
+
+/* 突破闪光 */
+@keyframes breakthrough-flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  40% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+.animate-breakthrough-flash {
+  animation: breakthrough-flash 1s ease-out forwards;
+}
+
+/* 突破波纹 */
+@keyframes breakthrough-ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.animate-breakthrough-ripple {
+  animation: breakthrough-ripple 1.5s ease-out forwards;
+}
+
+/* 突破粒子爆炸 */
+@keyframes breakthrough-particles {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+.animate-breakthrough-particles {
+  animation: breakthrough-particles 1.2s ease-out forwards;
+}
+
+/* 突破文字浮现 */
+@keyframes breakthrough-text {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0) scale(1.1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.9);
+  }
+}
+
+.animate-breakthrough-text {
+  animation: breakthrough-text 2s ease-out forwards;
+}
+
+/* 突破按钮脉冲 */
+@keyframes breakthrough-btn-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(253, 203, 110, 0.6),
+      0 0 40px rgba(253, 203, 110, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(253, 203, 110, 0.8),
+      0 0 60px rgba(253, 203, 110, 0.5);
+    transform: scale(1.02);
+  }
+}
+
+.animate-breakthrough-btn {
+  animation: breakthrough-btn-pulse 1s ease-in-out infinite;
+}
+
+/* ========== 图标动画 ========== */
+
+/* 图标悬浮效果 */
+@keyframes icon-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.animate-icon-float {
+  animation: icon-float 2s ease-in-out infinite;
+}
+
+/* 图标脉冲 */
+@keyframes icon-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+.animate-icon-pulse {
+  animation: icon-pulse 2s ease-in-out infinite;
+}
+
+/* 图标旋转 */
+@keyframes icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-icon-spin {
+  animation: icon-spin 3s linear infinite;
+}
+
+/* 图标闪烁 */
+@keyframes icon-shine {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.3);
+  }
+}
+
+.animate-icon-shine {
+  animation: icon-shine 1.5s ease-in-out infinite;
+}
+
+/* ========== 悬浮窗动画 ========== */
+
+/* 展开动画 */
+@keyframes widget-expand {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-widget-expand {
+  animation: widget-expand 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 收起动画 */
+@keyframes widget-collapse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+}
+
+.animate-widget-collapse {
+  animation: widget-collapse 0.2s ease-out forwards;
+}
+
+/* 抖动效果 */
+@keyframes widget-shake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-2px); }
+  20% { transform: translateX(2px); }
+  30% { transform: translateX(-2px); }
+  40% { transform: translateX(2px); }
+  50% { transform: translateX(-1px); }
+  60% { transform: translateX(1px); }
+  70% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+  90% { transform: translateX(-0.5px); }
+}
+
+.animate-shake {
+  animation: widget-shake 0.5s ease-in-out;
+}
+
+/* ========== 进度条动画 ========== */
+
+/* 进度条闪烁 */
+@keyframes progress-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-progress-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: progress-shimmer 2s linear infinite;
+}
+
+/* 进度条发光 */
+@keyframes progress-glow {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
+}
+
+.animate-progress-glow {
+  animation: progress-glow 1.5s ease-in-out infinite;
+}
+
+/* ========== 其他动画 ========== */
+
+/* 淡入 */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+/* 弹出 */
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 滑入 */
+@keyframes slide-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in-up {
+  animation: slide-in-up 0.3s ease-out forwards;
+}
+
+/* 闪烁提醒 */
+@keyframes attention-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-attention {
+  animation: attention-pulse 1s ease-in-out infinite;
+}
+
+/* ========== 工具类 ========== */
+
+/* 过渡效果 */
+.transition-realm {
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.transition-widget {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 悬浮效果 */
+.hover-lift {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* 点击效果 */
+.active-scale {
+  transition: transform 0.1s ease-out;
+}
+
+.active-scale:active {
+  transform: scale(0.95);
+}
+
+/* 渐变边框 */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
