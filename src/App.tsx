@@ -25,7 +25,7 @@ const getInitialState = (): PlayerState => ({
 
 function App() {
   const [playerState, setPlayerState] = useState<PlayerState>(getInitialState());
-  const [isRunning] = useState(true);
+
 
   // 从后端加载状态
   useEffect(() => {
