@@ -1,6 +1,6 @@
-use serde::{Serialize, Deserialize};
-
 #![allow(dead_code)]
+
+use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PlayerState {
