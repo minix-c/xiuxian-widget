@@ -1,5 +1,7 @@
 use serde::{Serialize, Deserialize};
 
+#![allow(dead_code)]
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PlayerState {
     pub realm: String,

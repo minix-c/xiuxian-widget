@@ -228,6 +228,7 @@ impl Database {
     }
     
     /// 添加历史记录
+    #[allow(dead_code)]
     pub fn add_history(&self, event_type: &str, event_data: &str) -> Result<()> {
         self.conn.execute(
             "INSERT INTO chronicle (event_type, event_data) VALUES (?1, ?2)",
@@ -237,6 +238,7 @@ impl Database {
     }
     
     /// 更新在线时间
+    #[allow(dead_code)]
     pub fn update_online_time(&self, seconds: u64) -> Result<()> {
         let today = chrono::Local::now().format("%Y-%m-%d").to_string();
         
@@ -255,6 +257,7 @@ impl Database {
     }
     
     /// 获取总修炼时长
+    #[allow(dead_code)]
     pub fn get_total_online_seconds(&self) -> Result<u64> {
         let count: i64 = self.conn.query_row(
             "SELECT COALESCE(SUM(online_seconds), 0) FROM daily_stats",
@@ -265,6 +268,7 @@ impl Database {
     }
     
     /// 备份数据库
+    #[allow(dead_code)]
     pub fn backup(&self) -> Result<PathBuf> {
         let backup_path = Self::get_db_path()?.with_extension("db.backup");
         let _ = self.conn.execute(

@@ -378,7 +378,7 @@ fn main() {
             println!("悬浮修仙启动成功！");
             Ok(())
         })
-        .on_window_event(|window, event| {
+        .on_window_event(|_window, event| {
             match event {
                 WindowEvent::CloseRequested { .. } => {
                     // 关闭时保存游戏
