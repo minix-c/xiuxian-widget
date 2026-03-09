@@ -82,9 +82,9 @@ fn load_game() -> Result<PlayerState, String> {
 
 /// 获取每日统计
 #[tauri::command]
-fn get_daily_stats() -> Result<Vec<db::DailyStat>, String> {
+fn get_daily_stats(limit: Option<i64>) -> Result<Vec<db::DailyStat>, String> {
     let db = DB.lock().map_err(|e| e.to_string())?;
-    db.get_daily_stats()
+    db.get_daily_stats(limit)
         .map_err(|e| e.to_string())
 }
 
@@ -294,14 +294,8 @@ fn setup_floating_window(window: &tauri::WebviewWindow) -> Result<(), Box<dyn st
         }))?;
     }
     
-    // Windows特定设置
-    #[cfg(target_os = "windows")]
-    {
-        use tauri::WebviewWindowExt;
-        
-        // 设置透明背景（用于圆角和阴影效果）
-        // 注意：这需要前端CSS配合设置透明背景
-    }
+    // Windows特定设置（透明背景等）
+    // 注意：这需要前端CSS配合设置透明背景
     
     Ok(())
 }

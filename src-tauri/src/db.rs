@@ -35,7 +35,8 @@ impl Database {
         let mut path = dirs::data_dir()
             .ok_or_else(|| rusqlite::Error::InvalidPath(PathBuf::from("data_dir not found")))?;
         path.push("xiuxian-widget");
-        std::fs::create_dir_all(&path)?;
+        std::fs::create_dir_all(&path)
+            .map_err(|e| rusqlite::Error::InvalidPath(PathBuf::from(format!("Failed to create dir: {}", e))))?;
         path.push("save.db");
         Ok(path)
     }
