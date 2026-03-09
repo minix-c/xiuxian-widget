@@ -373,7 +373,7 @@ fn main() {
             start_auto_save_task(app_handle.clone());
             
             // 启动修炼计时器
-            start_cultivation_timer(app_handle);
+            start_cultivation_timer(app_handle.clone());
             
             println!("悬浮修仙启动成功！");
             Ok(())
